@@ -1,0 +1,85 @@
+{% extends "admin/base.html" %}
+{% load static %}
+{% block extrahead %}
+{{ block.super }}
+<link rel="shortcut icon" href="{%  static 'favicon.ico' %}">
+<style>
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --secondary: #781C68;
+            --primary: #781C68;
+            --accent: #FFD39A;
+            --primary-fg: #FFF5E1;
+            --link-fg: #0a0908;
+            --link-hover-color: #FFF5E1;
+            --link-selected-fg: #6f94c6;
+            --object-tools-bg: #781C68;
+            --header-branding-color: var(--link-hover-color);
+        }
+    }
+
+    @media (prefers-color-scheme: light) {
+        :root {
+            --secondary: #363636;
+            --primary: #363636;
+            --accent: #FFF5E1;
+            --primary-fg: #FFF5E1;
+            --link-fg: #0a0908;
+            --link-hover-color: #4e7dbc;
+            --link-selected-fg: #4e7dbc;
+            --object-tools-bg: var(--secondary);
+            --header-branding-color: var(--link-hover-color);
+        }
+    }
+
+    #nav-sidebar {
+        display: none;
+    }
+
+    .main.shifted>#nav-sidebar+.content {
+        max-width: 100%;
+    }
+
+    #toggle-nav-sidebar {
+        display: none;
+    }
+
+    .login #container {
+        border-radius: 5px;
+        box-shadow: 0 5px 50px rgb(0 0 0 / 0.2);
+        background-color: white;
+    }
+
+    #content .app-auth.module,
+    .app-Library.module,
+    .change-list #content,
+    .change-form #content,
+    .upload-data #content {
+        border-radius: 5px;
+        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.4);
+        background-color: white;
+        margin: 8px auto;
+    }
+
+    #content {
+        width: 900px;
+        margin: 0 auto;
+    }
+
+    .login #content {
+        width: auto;
+    }
+
+    #toolbar #changelist-search>* {
+        text-align: center;
+    }
+
+    #toolbar {
+        background: white;
+    }
+
+    .paginator {
+        width: auto;
+    }
+</style>
+{% endblock %}

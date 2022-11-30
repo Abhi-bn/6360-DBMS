@@ -1,0 +1,37 @@
+{% extends "admin/index.html" %}
+{% block content_title %}
+{% if title %}<h1>{{ title }}</h1>{% endif %}
+<ul class="object-tools">
+    <li>
+        {% if user.is_superuser %}<a href="{% url 'admin:upload_data' %}">Upload New Data</a> {% endif%}
+    </li>
+</ul>
+{% endblock %}
+{% block extrahead %}
+{{ block.super }}
+<style>
+    #content-related {
+        display: none;
+    }
+
+    #content {
+        width: 800px;
+        margin: 0 auto;
+    }
+
+    #content-main {
+        max-width: 800px;
+    }
+
+    /* #content h1 {
+        text-align: center;
+    } */
+
+    /* #content .app-auth.module,
+    .app-Library.module {
+        border-radius: 15px;
+        box-shadow: 0 5px 50px rgb(0 0 0 / 0.2);
+        background-color: white;
+    } */
+</style>
+{% endblock %}

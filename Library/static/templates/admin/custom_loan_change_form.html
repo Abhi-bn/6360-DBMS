@@ -1,0 +1,35 @@
+{% extends "admin/change_form.html" %}
+{% block field_sets %}
+<div style="display: flex;width: 100%;">
+    <div style="flex: 30%;padding-bottom: 20px;padding-left: 20px; padding-right: 20px;padding-top: 5px;">
+        <img src="https://covers.openlibrary.org/b/isbn/{{original.book.isbn10}}-L.jpg"
+            style="width: calc(100%);height: auto;border: 1px solid black;" alt="{{original.book.title}}"
+            aria-placeholder="{{original.title}}" />
+    </div>
+    <div style="flex: 70%;">
+        {% for fieldset in adminform %}
+        {% include "admin/includes/fieldset.html" %}
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+{% block submit_buttons_bottom %}
+<div class="submit-row">
+    {% if object_id == None %}
+    <form method="post">
+        <a href="/Library/loan/add/">
+            <input type="submit" value="Borrow the Book"></input>
+        </a>
+    </form>
+    {% else %}
+    <a href="/Library/fine/{{fine.id}}">
+        <input type="button" value="Return the Book"></input>
+    </a>
+    <form method="post">
+        <a href="/Library/loan/{{object_id}}/change/">
+            <input type="submit" value="Save"></input>
+        </a>
+    </form>
+    {% endif %}
+</div>
+{% endblock %}

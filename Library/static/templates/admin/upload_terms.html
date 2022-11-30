@@ -1,0 +1,40 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+{% block extrastyle %}
+<link rel="stylesheet" href="{% static 'admin/css/forms.css' %}">
+{% endblock %}
+
+{% block messagelist %}{{ block.super }}upload-data{% endblock %}
+
+{% block bodyclass %}{{ block.super }}upload-data{% endblock %}
+{% block content %}
+<ul class="messagelist">
+  {% if is_successful %}<li class="success">Successfully Uploaded</li>{% endif %}
+</ul>
+<div id="content-main">
+  {% if not is_successful %}
+  <form method="post" enctype="multipart/form-data" action="{% url 'admin:upload_data' %}">
+    {% csrf_token %}
+    <fieldset class="module aligned">
+      <div class="form-row">
+        <label>Please select File to Upload</label>
+        <input type="file" name="myfile" class="file-upload">
+        <div>{{error}}</div>
+      </div>
+      <div class="form-row">
+        <label>Select Type of Data</label>
+        <select name="option_id" style="width: 300px;">
+          {% for entry in options %}
+          <option value="{{ entry }}">{{ entry }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="submit-row">
+        <input type="submit" value="{% translate 'Upload' %}"></input>
+      </div>
+    </fieldset>
+  </form>
+  {% endif %}
+</div>
+{% endblock %}

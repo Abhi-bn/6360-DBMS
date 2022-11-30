@@ -1,0 +1,14 @@
+{% extends "admin/base_site.html" %}
+{% block content %}
+<div id="content-main">
+    {% csrf_token %}
+    {% if data.is_successful %}
+    <div>Successfully Uploaded</div>
+    {% else %}
+    <div>{{data.error}}</div>
+    <a href="{% url 'admin:upload_data' %}">
+        <input type="submit" value="Retry">
+    </a>
+    {% endif %}
+</div>
+{% endblock %}

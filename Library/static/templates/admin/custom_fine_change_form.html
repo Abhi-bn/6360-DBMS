@@ -1,0 +1,14 @@
+{% extends "admin/change_form.html" %}
+{% block submit_buttons_bottom %}
+<div class="submit-row">
+    {% if object_id != None %}
+    <form method="post">
+        <input id="paid" hidden=true value="true" required name="paid" />
+        <a href="/Library/fine/{{object_id}}/change/">
+            <input type="submit" {% if not original.fine_amt %} value='No Fine, Return the Book' {% else %}
+                value='Please Pay the Fine of ${{original.fine_amt}}' {% endif %} />
+        </a>
+    </form>
+    {% endif %}
+</div>
+{% endblock %}
